@@ -1,0 +1,26 @@
+[project]
+name = "scanner-mcp"
+version = "0.1.0"
+description = "Generic MCP server exposing a scan tool to network (eSCL/AirScan) and USB (WIA/SANE) scanners."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "mcp>=1.2.0",
+    "httpx>=0.27",
+    "zeroconf>=0.132",
+    "pillow>=10.0",
+]
+
+[project.optional-dependencies]
+ocr = ["pytesseract>=0.3.10"]
+
+[project.scripts]
+scanner-mcp = "scanner_mcp.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["scanner_mcp"]
