@@ -14,6 +14,8 @@ dependencies = [
 
 [project.optional-dependencies]
 ocr = ["pytesseract>=0.3.10"]
+# TWAIN backend for Windows scanners that expose no usable WIA driver.
+twain = ["pytwain>=2.3; platform_system == 'Windows'"]
 
 [project.scripts]
 scanner-mcp = "scanner_mcp.server:main"

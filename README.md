@@ -21,6 +21,8 @@ lights up whatever scanners it can reach:
 
 - **eSCL** (`_uscan._tcp` mDNS) — driverless network MFPs/scanners. *Cross-platform.*
 - **WIA** — USB (and some network) scanners on **Windows**, driven via PowerShell COM.
+- **TWAIN** — Windows scanners that expose only a TWAIN data source (older/pro units
+  with no usable WIA driver). Optional; needs `pytwain` + a TWAIN DSM (see below).
 - **SANE** (`scanimage`) — USB/network scanners on **Linux** and **macOS**.
 
 ## Install
@@ -33,12 +35,18 @@ python -m venv .venv
 pip install -e .
 # optional OCR support:
 pip install -e ".[ocr]"      # also needs the Tesseract binary installed
+# optional TWAIN backend (Windows only):
+pip install -e ".[twain]"    # also needs a TWAIN DSM (see below)
 ```
 
 Platform prerequisites:
 
-- **Windows**: nothing extra — WIA and PowerShell ship with Windows. Install the
+- **Windows**: nothing extra for WIA — it and PowerShell ship with Windows. Install the
   scanner's normal Windows driver so it appears in *Devices*.
+  - **TWAIN (optional)**: install `pytwain` (`pip install -e ".[twain]"`) and make sure a
+    TWAIN **DSM** is present. 64-bit Python needs `TWAINDSM.dll` (shipped by most TWAIN
+    2.x drivers or the TWAIN DSM redistributable); 32-bit Python can use the classic
+    `twain_32.dll`. If neither is installed, the TWAIN backend just stays disabled.
 - **Linux**: `sudo apt install sane-utils` (provides `scanimage`).
 - **macOS**: `brew install sane-backends` for USB; network scanners work via eSCL with no extras.
 - **Network scanners**: just be on the same LAN/subnet; mDNS handles discovery.

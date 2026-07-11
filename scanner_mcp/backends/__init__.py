@@ -17,10 +17,11 @@ log = logging.getLogger("scanner_mcp.backends")
 def all_backends() -> list[Backend]:
     from .escl import ESCLBackend
     from .sane import SaneBackend
+    from .twain import TWAINBackend
     from .wia import WIABackend
 
     backends: list[Backend] = []
-    for cls in (ESCLBackend, SaneBackend, WIABackend):
+    for cls in (ESCLBackend, SaneBackend, WIABackend, TWAINBackend):
         try:
             b = cls()
         except Exception as exc:  # pragma: no cover - defensive
