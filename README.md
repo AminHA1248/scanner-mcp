@@ -9,7 +9,7 @@
 > **Let Claude scan and read paper documents** from any USB or network scanner.
 
 <p align="center">
-  <img src="docs/demo.gif" alt="scanner-mcp demo: discover a scanner, scan a page, and Claude reads it back" width="760">
+  <img src="docs/demo.gif" alt="Ask Claude to scan a document; it calls the scan_document tool and reads the page back" width="760">
 </p>
 
 A **generic MCP server** that exposes a scanning tool to Claude (and any other MCP
@@ -87,6 +87,22 @@ claude mcp add scanner -- /path/to/scanner-mcp/.venv/bin/scanner-mcp
 
 Restart the client, then ask Claude: *"List my scanners"* or *"Scan the document on the
 glass and read it."*
+
+## How you actually run it
+
+You normally **don't launch anything yourself** — Claude Desktop/Code starts the
+`scanner-mcp` server in the background (per the config above) and calls its tools when
+you ask. Running `scanner-mcp` by hand just starts the MCP server, which waits silently
+for JSON-RPC on stdin; it is not an interactive shell.
+
+To test the hardware **without Claude**, use the bundled CLI, [`test_scan.py`](test_scan.py):
+
+```bash
+# from the project folder, using the venv's Python
+python test_scan.py --list                 # discover scanners
+python test_scan.py --dpi 300              # scan (auto-selects if only one)
+python test_scan.py --scanner "<id>" --source adf --format pdf
+```
 
 ## Configuration (env vars)
 

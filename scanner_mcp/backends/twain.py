@@ -25,6 +25,10 @@ from .base import Backend
 
 log = logging.getLogger("scanner_mcp.twain")
 
+# pytwain logs a noisy INFO/ERROR pair when no TWAIN DSM is installed (the common
+# case on machines with only WIA scanners). Keep our own graceful handling; hush its.
+logging.getLogger("twain").setLevel(logging.CRITICAL)
+
 # TWAIN pixel types: TWPT_BW=0, TWPT_GRAY=1, TWPT_RGB=2.
 _PIXELTYPE = {"color": 2, "gray": 1, "lineart": 0}
 
