@@ -1,5 +1,17 @@
 # scanner-mcp
 
+![License: MIT](https://img.shields.io/github/license/AminHA1248/scanner-mcp?color=blue)
+![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)
+![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)
+![MCP](https://img.shields.io/badge/MCP-server-8A2BE2)
+![Stars](https://img.shields.io/github/stars/AminHA1248/scanner-mcp?style=social)
+
+> **Let Claude scan and read paper documents** from any USB or network scanner.
+
+<p align="center">
+  <img src="docs/demo.gif" alt="scanner-mcp demo: discover a scanner, scan a page, and Claude reads it back" width="760">
+</p>
+
 A **generic MCP server** that exposes a scanning tool to Claude (and any other MCP
 client). It works with **network scanners** through the standard **eSCL / AirScan /
 Mopria** protocol and with **USB scanners** through the platform driver stack —
