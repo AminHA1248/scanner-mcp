@@ -9,7 +9,7 @@
 > **Let Claude scan and read paper documents** from any USB or network scanner.
 
 <p align="center">
-  <img src="docs/demo.gif" alt="Ask Claude to scan a document; it calls the scan_document tool and reads the page back" width="760">
+  <img src="https://raw.githubusercontent.com/AminHA1248/scanner-mcp/main/docs/demo.gif" alt="Ask Claude to scan a document; it calls the scan_document tool and reads the page back" width="760">
 </p>
 
 A **generic MCP server** that exposes a scanning tool to Claude (and any other MCP
