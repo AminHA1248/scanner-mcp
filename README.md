@@ -40,16 +40,25 @@ lights up whatever scanners it can reach:
 ## Install
 
 ```bash
+pip install scanner-mcp
+# optional OCR support (also needs the Tesseract binary installed):
+pip install "scanner-mcp[ocr]"
+# optional TWAIN backend, Windows only (also needs a TWAIN DSM, see below):
+pip install "scanner-mcp[twain]"
+```
+
+<details>
+<summary>Or install from source (for development)</summary>
+
+```bash
+git clone https://github.com/AminHA1248/scanner-mcp
 cd scanner-mcp
 python -m venv .venv
 # Windows:  .venv\Scripts\activate
 # macOS/Linux:  source .venv/bin/activate
-pip install -e .
-# optional OCR support:
-pip install -e ".[ocr]"      # also needs the Tesseract binary installed
-# optional TWAIN backend (Windows only):
-pip install -e ".[twain]"    # also needs a TWAIN DSM (see below)
+pip install -e ".[twain]"    # editable install; add [ocr] too if you want OCR
 ```
+</details>
 
 Platform prerequisites:
 
@@ -72,17 +81,19 @@ Edit `claude_desktop_config.json` (Settings → Developer → Edit Config):
 {
   "mcpServers": {
     "scanner": {
-      "command": "C:\\Users\\aminh\\scanner-mcp\\.venv\\Scripts\\scanner-mcp.exe"
+      "command": "scanner-mcp"
     }
   }
 }
 ```
 
-On macOS/Linux use the venv path `/path/to/scanner-mcp/.venv/bin/scanner-mcp`.
+If `scanner-mcp` isn't found (its Scripts/bin dir isn't on Claude's PATH), use the full
+path to the launcher — e.g. `C:\Users\you\...\Scripts\scanner-mcp.exe` on Windows or
+`/path/to/venv/bin/scanner-mcp` on macOS/Linux — or `python -m scanner_mcp.server`.
 
 ### Claude Code (CLI)
 ```bash
-claude mcp add scanner -- /path/to/scanner-mcp/.venv/bin/scanner-mcp
+claude mcp add scanner -- scanner-mcp
 ```
 
 Restart the client, then ask Claude: *"List my scanners"* or *"Scan the document on the
