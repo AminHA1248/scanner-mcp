@@ -1,0 +1,62 @@
+{
+  "manifest_version": "0.2",
+  "name": "scanner-mcp",
+  "display_name": "Scanner",
+  "version": "0.1.0",
+  "description": "Let Claude scan and read paper documents from any USB or network scanner.",
+  "long_description": "A generic MCP server that gives Claude a scan tool. It reaches network scanners over the standard eSCL / AirScan / Mopria protocol and USB scanners through the platform driver stack (WIA on Windows, SANE on Linux/macOS, and TWAIN on Windows). Ask Claude to scan a document and the page comes back inline for it to read, or OCR'd to text, or saved as a PDF.\n\nRequires Python 3.10+ with the `scanner-mcp` package installed (`pip install scanner-mcp`).",
+  "author": {
+    "name": "Amin Haji-Abolhassani",
+    "email": "amin.h.a@gmail.com",
+    "url": "https://github.com/AminHA1248"
+  },
+  "homepage": "https://github.com/AminHA1248/scanner-mcp",
+  "documentation": "https://github.com/AminHA1248/scanner-mcp#readme",
+  "support": "https://github.com/AminHA1248/scanner-mcp/issues",
+  "icon": "icon.png",
+  "license": "MIT",
+  "keywords": ["scanner", "scanning", "escl", "airscan", "wia", "sane", "twain", "ocr", "mcp", "claude"],
+  "server": {
+    "type": "python",
+    "entry_point": "server/main.py",
+    "mcp_config": {
+      "command": "python",
+      "args": ["${__dirname}/server/main.py"],
+      "env": {
+        "SCANNER_MCP_SAVE_DIR": "${user_config.save_dir}",
+        "SCANNER_MCP_LOG": "${user_config.log_level}"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "list_scanners",
+      "description": "Discover network (eSCL/AirScan) and USB (WIA/SANE/TWAIN) scanners reachable from this machine."
+    },
+    {
+      "name": "scan_document",
+      "description": "Scan a page and return it inline for Claude to read, and/or save it, and/or OCR it to text."
+    }
+  ],
+  "user_config": {
+    "save_dir": {
+      "type": "directory",
+      "title": "Save folder",
+      "description": "Where scans are saved. Leave blank to use ~/Scans.",
+      "required": false
+    },
+    "log_level": {
+      "type": "string",
+      "title": "Log level",
+      "description": "Logging verbosity: DEBUG, INFO, WARNING, or ERROR.",
+      "required": false,
+      "default": "INFO"
+    }
+  },
+  "compatibility": {
+    "platforms": ["win32", "darwin", "linux"],
+    "runtimes": {
+      "python": ">=3.10"
+    }
+  }
+}

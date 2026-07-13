@@ -24,13 +24,14 @@ from .imaging import have_pil
 from .models import ScanOptions
 from .ocr import ocr_available, ocr_image
 
-logging.basicConfig(level=os.environ.get("SCANNER_MCP_LOG", "INFO"))
+# Treat empty env values (e.g. from an unset bundle user_config field) as unset.
+logging.basicConfig(level=os.environ.get("SCANNER_MCP_LOG") or "INFO")
 log = logging.getLogger("scanner_mcp")
 
 mcp = FastMCP("scanner")
 
 #: Where scans are saved when the caller doesn't specify save_dir.
-_DEFAULT_SAVE_DIR = Path(os.environ.get("SCANNER_MCP_SAVE_DIR", Path.home() / "Scans"))
+_DEFAULT_SAVE_DIR = Path(os.environ.get("SCANNER_MCP_SAVE_DIR") or (Path.home() / "Scans"))
 #: Cap on how many page images we inline back to the model, to bound response size.
 _MAX_INLINE_PAGES = 10
 

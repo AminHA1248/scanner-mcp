@@ -74,7 +74,14 @@ Platform prerequisites:
 
 ## Connect it to Claude
 
-### Claude Desktop
+### Claude Desktop — one-click extension (easiest)
+Download `scanner-mcp-<version>.mcpb` from the
+[latest release](https://github.com/AminHA1248/scanner-mcp/releases/latest) and open it
+via **Settings → Extensions → Install extension…**. Requires Python 3.10+ with
+`pip install scanner-mcp` (the extension tells you if it's missing). Details:
+[docs/EXTENSION.md](docs/EXTENSION.md).
+
+### Claude Desktop — manual config
 Edit `claude_desktop_config.json` (Settings → Developer → Edit Config):
 
 ```json
