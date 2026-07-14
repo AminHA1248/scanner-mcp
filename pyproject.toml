@@ -1,6 +1,6 @@
 [project]
 name = "scanner-mcp"
-version = "0.1.0"
+version = "0.1.1"
 description = "Generic MCP server exposing a scan tool to network (eSCL/AirScan) and USB (WIA/SANE/TWAIN) scanners."
 readme = "README.md"
 requires-python = ">=3.10"

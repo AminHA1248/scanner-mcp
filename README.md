@@ -145,6 +145,13 @@ python test_scan.py --scanner "<id>" --source adf --format pdf
   (typical for LAN scanners); prefer a trusted network.
 - This server performs local hardware I/O only — it does not send anything to the cloud.
 
+## Privacy Policy
+
+scanner-mcp runs entirely on your machine and **collects no data** — no telemetry, no
+analytics, no network transmission of your scans. Scanned files are saved only to your
+local disk (default `~/Scans`) and returned to the MCP client you asked to scan. Full
+policy: **[PRIVACY.md](https://github.com/AminHA1248/scanner-mcp/blob/main/PRIVACY.md)**.
+
 ## License
 
 MIT

@@ -2,7 +2,7 @@
   "manifest_version": "0.2",
   "name": "scanner-mcp",
   "display_name": "Scanner",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Let Claude scan and read paper documents from any USB or network scanner.",
   "long_description": "A generic MCP server that gives Claude a scan tool. It reaches network scanners over the standard eSCL / AirScan / Mopria protocol and USB scanners through the platform driver stack (WIA on Windows, SANE on Linux/macOS, and TWAIN on Windows). Ask Claude to scan a document and the page comes back inline for it to read, or OCR'd to text, or saved as a PDF.\n\nRequires Python 3.10+ with the `scanner-mcp` package installed (`pip install scanner-mcp`).",
   "author": {
@@ -15,6 +15,7 @@
   "support": "https://github.com/AminHA1248/scanner-mcp/issues",
   "icon": "icon.png",
   "license": "MIT",
+  "privacy_policies": ["https://github.com/AminHA1248/scanner-mcp/blob/main/PRIVACY.md"],
   "keywords": ["scanner", "scanning", "escl", "airscan", "wia", "sane", "twain", "ocr", "mcp", "claude"],
   "server": {
     "type": "python",

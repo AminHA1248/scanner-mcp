@@ -18,6 +18,7 @@ from pathlib import Path
 
 from mcp.server.fastmcp import FastMCP
 from mcp.server.fastmcp import Image as MCPImage
+from mcp.types import ToolAnnotations
 
 from .backends import all_backends, backend_for
 from .imaging import have_pil
@@ -38,7 +39,13 @@ _MAX_INLINE_PAGES = 10
 _EXT = {"image/png": "png", "image/jpeg": "jpg", "application/pdf": "pdf"}
 
 
-@mcp.tool()
+@mcp.tool(
+    annotations=ToolAnnotations(
+        title="List scanners",
+        readOnlyHint=True,
+        openWorldHint=True,  # discovers devices on the local network / USB bus
+    )
+)
 def list_scanners() -> str:
     """List all scanners reachable from this machine.
 
@@ -62,7 +69,14 @@ def list_scanners() -> str:
     )
 
 
-@mcp.tool()
+@mcp.tool(
+    annotations=ToolAnnotations(
+        title="Scan document",
+        readOnlyHint=False,     # drives the scanner and writes a file
+        destructiveHint=False,  # additive only — never deletes or overwrites user data
+        openWorldHint=True,
+    )
+)
 def scan_document(
     scanner_id: str = "",
     source: str = "auto",
